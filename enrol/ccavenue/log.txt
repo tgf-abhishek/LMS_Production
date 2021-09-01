@@ -1,0 +1,15 @@
+
+
+***************************************08/04/2015********************************
+
+1. The moodle CCAvenue MCPG Payment Module has been developed for doing the online payment transaction .
+
+		moodle 2.8
+		CCAvenue MCPG Version:2.0
+
+2.update payment status in the admin order page
+
+3.order number display after the payment redirection of the successful payment
+
+
+*********************************************************************************

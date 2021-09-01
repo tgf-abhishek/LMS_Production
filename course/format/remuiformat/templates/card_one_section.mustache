@@ -1,0 +1,434 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+
+{{!
+    @template format_remuiformat/card_one_section
+
+
+    Example context (json):
+    {
+        "section": "1",
+        "leftnav": "1/0",
+        "rightnav": "1/0",
+        "leftside": "leftside options"
+        "optionmenu": "rightside optionmenu"
+        "title": "General Section 1",
+        "summary": "General Section summary",
+        "activities": [
+         {
+            "index": "index",
+            "id": "id",
+            "completion": "completion",
+            "viewurl": "viewurl",
+            "title": "title",
+            "modulename": "modulename",
+            "modulefullname": "Module full name",
+            "summary": "summary",
+            "completed": "completed",
+            "hidden": "hidden",
+            "availstatus": "availstatus",
+            "modicons": "modicons",
+         }
+        ],
+        "addnewactivity": "1/0",
+        "remuicourseformatcard": "1/0",
+    }
+}}
+
+
+ 
+{{#hiddensection}}
+    {{{ hiddensection }}}
+{{/hiddensection}}
+{{^hiddensection}}
+
+
+                        <style>
+                            .activity-content{
+                                font-size: 20px;
+                            }
+                            a .activityicon{
+                                display:none !important;
+                            }
+                            .section{
+                               
+                            }
+                            .activity-cards{
+                                background: none !important;
+                                border: none !important;
+                               
+                            }
+                            .activity-cards:hover{
+                                box-shadow:none !important;
+                            }
+                            .title{
+                                font-weight: 500 !important;
+                                margin-top: 50px;  
+                                font-size: 25px !important; 
+                            }
+                            .activity-content{
+                                font-size:25px;
+                                margin-top: -10px;
+                                
+                            }
+                            .single-card{           
+                           
+                                height: 200px !important;                    
+                                color:white !important;
+                                border-radius: 10px !important;
+                                background: linear-gradient(        
+                                    #f5bf00 0%, 
+                                    #f5bf00 70%, 
+                                    #FFFFFF 70%, 
+                                    #FFFFFF 100% 
+                                );
+                                box-shadow: 10px 10px 5px #aaaaaa !important;
+                                
+                            }
+                            .general-single-card{     
+                                display:none !important;
+                                border-style:groove;
+                                border-radius: 10px !important;
+                            }
+                            .section-title{
+                                text-align:center;                               
+                            }
+                            .single-section-title{
+                                font-weight: bold;  
+                            }
+                            .sno{
+                                display:none;
+                            }
+                            .wdm-mod-name{
+                                display:none;
+                            }
+                            .icondiv{
+                                display:flex;
+                                justify-content: center;
+                            }
+                            .qticon{
+                                margin-top: 30px;
+                            }
+                            .fbicon{
+                                margin-top: 30px;
+                            }
+                            .zmicon{
+                                margin-top: 30px;
+                            }  
+                            .lockicon{
+                                margin-top: 30px;
+                            }                         
+                            .dimmed img{
+                                display:none !important;
+                            }
+                            
+                        </style>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <div id="card-editing-container" class="remui-format-card single-section-format row mt-20">
+        <ul class="sections">
+            <li id="section-{{section}}" class="section main" aria-labelledby="{{uniqid}}" data-sectionid="{{ section }}" data-courseid="{{ courseid }}">
+                <div class="section-details" style="display:none !important;">
+                    <div class="col-md-12 p-0 general-single-card p-15 p-3">
+                        {{#editing}}
+                            <div class="right side">
+                                {{{ optionmenu }}}
+                            </div>
+                        {{/editing}}
+                        <h2 class="section-title">
+                            <span class="sno {{^hidden}}text-primary{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
+                                {{ section }}&#46;
+                            </span>
+                            <span id="{{uniqid}}" class="single-section-title {{#hidden}}text-muted{{/hidden}}">{{{ title }}}</span>
+                        </h2>
+                        
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="summary">
+                    </div>
+                    <ul class="activity-cards section yui3-dd-drop">
+                    {{#activities}}
+                    {{^hidden}}                 
+                        <a href="{{{viewurl}}}">                      
+                    {{/hidden}}
+                        <li class="activity {{#layouttypecol}}col-activity{{/layouttypecol}} {{#layouttyperow}}row-activity{{/layouttyperow}} modtype_{{{modulename}}}" id="module-{{id}}" data-id ="{{ id }}" data-section="{{ section }}" aria-labelledby="module-{{id}}-title">
+                            <div class="single-card"> 
+                                                   
+                                {{#editing}}
+                                    {{{move}}}
+                                {{/editing}}
+                                <div class="wdm-mod-name {{#hidden}}text-muted{{/hidden}}">{{ modulefullname }}</div>
+                                <button class="modbutton" style="display:none;">{{ modulefullname }}</button>
+                                {{#editing}}
+                                <div class="actions">
+                                    <span class="toggle-row-column btn btn-inverse" data-activityid="{{ id }}">
+                                        <span class='type-col'>
+                                            {{# pix }}
+                                                ecf-cols, format_remuiformat,
+                                                {{# str }} showincard, format_remuiformat {{/ str }}
+                                            {{/ pix }}
+                                        </span>
+                                        <span class='type-row'>
+                                            {{# pix }}
+                                                ecf-rows, format_remuiformat,
+                                                {{# str }} showinrow, format_remuiformat {{/ str }}
+                                            {{/ pix }}
+                                        </span>
+                                    </span>
+                                  {{{ modicons }}}
+                                </div>
+                                {{/editing}}
+
+                                
+                                <button class="availbutton" style="display:none;">{{ availstatus }}</button>
+                                <div style="display:none !important;" class="{{^summary}}nosummary{{/summary}}">
+                                {{{ availstatus }}}
+                                </div>
+                                
+                                <span style="display:flex; justify-content: center; margin-top:-40px;"><button class="greentick" ><i class="fas fa-check fa-1x"></i></button></span>
+                                    <style>
+                                        .greentick {
+                                            visibility: hidden;
+                                            background-color: #4CAF50; /* Green */
+                                            border: 2px solid white;
+                                            color: white;
+                                            padding: 15px 20px;
+                                            text-align: center;
+                                            text-decoration: none;
+                                            visibility : hidden;
+                                            font-size: 16px;
+                                            margin: 0 0;
+                                            border-radius: 50%;
+                                        }
+                                        .greentick:hover{
+                                            cursor:default;
+                                        }
+                                    </style>
+                                
+                                <span style="display:flex; justify-content: center; margin-top:-56px;"><button class="lock" ><i class="fas fa-lock fa-1x"></i></button></span>
+                                    <style>
+                                        .lock {
+                                            visibility : hidden;
+                                            background-color: lightgrey; 
+                                            border: 2px solid white;
+                                            color: black;
+                                            padding: 15px 20px;
+                                            text-align: center;
+                                            text-decoration: none;
+                                            display: inline-block;
+                                            font-size: 16px;
+                                            margin: 0 0;
+                                            border-radius: 50%;
+                                        }
+                                        .lock:hover{
+                                            cursor:default;
+                                        }
+                                    </style>
+
+                                <span style="display:flex; justify-content: center; margin-top:-55px;"><button class="hourglass" ><i class="fas fa-hourglass-half"></i></button></span>
+                                <style>
+                                    .hourglass {
+                                        visibility : hidden;
+                                        background-color: black;
+                                        border: 2px solid white;
+                                        color: #C0C0C0;
+                                        padding: 15px 20px;
+                                        text-align: center;
+                                        text-decoration: none;
+                                        display: inline-block;
+                                        font-size: 16px;
+                                        margin: 0 0;
+                                        border-radius: 50%;
+                                    }
+                                    .hourglass:hover{
+                                        cursor:default;
+                                    }
+                                </style>
+
+                                <div style="height: 110px;">{{!change}}
+                                <span style="display: flex; justify-content: flex-end; margin-top: -27px; margin-right: -9px;"><span class="w3-badge" style="background-color:#403d3d; ">{{index}}</span></span>
+                                </div>
+
+                                <div class="icondiv">
+                                    <span class="qticon" style="color:black; display:none;"><i class="fas fa-clipboard-list fa-3x"></i></span>
+                                    <span class="zmicon" style="color:black; display:none;"><i class="fas fa-video fa-3x"></i></span>
+                                    <span class="fbicon" style="color:black; display:none;"><i class="fas fa-comment-dots fa-3x"></i></span>
+                                    <span class="lockicon" style="color:black; display:none;"><i class="fas fa-lock fa-3x"></i></span>
+                                </div>
+
+                                                           
+                                <div id="module-{{id}}-title" class="title {{^summary}}nosummary{{/summary}}" style="text-align:left !important; margin-top:-40px;">
+                                    <div align="center" class="titlespan">{{{ title }}}</div>
+                                </div>
+
+                            {{!}}
+                            {{^hidden}}                 
+                                <a href="{{{viewurl}}}">                      
+                            {{/hidden}}
+                                <div class="activity-content" align="center" style="color:white !important; height: 115px; margin-top: -50px; font-size: 20px !important;">
+                                <br>
+                                    {{#summary}}
+                                        {{#label}}
+                                            {{{ fullcontent }}}
+                                        {{/label}}
+                                        {{^label}}
+                                            {{{ summary }}}
+                                        {{/label}}
+                                    {{/summary}}
+                                </div>
+                            {{^hidden}}                 
+                                </a>                      
+                            {{/hidden}}      
+
+
+                            {{!White sapce clickable}}
+                            <br><br>
+                            {{^hidden}}                 
+                                <a href="{{{viewurl}}}">                      
+                            {{/hidden}}
+                            <div style="color: black; height: 75px; width: 100%; margin-top: -70px;">
+                            <b style="display: none !important;">Test</b>   
+                            </div>     
+                            {{^hidden}}                 
+                                </a>                      
+                            {{/hidden}}               
+                                
+                                {{#completion}}
+                                    <div style="display: none !important;" class="completion-container align-items-center pr-15 p-r-1 {{^completed}}text-muted{{/completed}}">
+                                        <div class="cc completion-check-{{id}}">
+                                            
+                                            {{{ completion }}}
+                                        </div>
+                                    </div>
+                                {{/completion}}
+                                
+                
+                            </div>
+                        
+                        </li>
+                        {{^hidden}}                 
+                            </a>                      
+                        {{/hidden}}
+                    {{/activities}}
+                    </ul>
+                </div>
+                {{{ addnewactivity }}}
+            </li>
+            {{#sections}}
+            <li id="section-{{index}}" class="section hide">
+                <div class="content">
+                    <div class="sectionname">
+                        <h2>
+                            {{name}}
+                        </h2>
+                    </div>
+                    <div class="summary">
+
+                    </div>
+                </div>
+            </li>
+            {{/sections}}
+        </ul>
+    </div>
+    <!-- next/prev sections -->
+    <div class="col-md-12 p-0 wdm-card-section">
+        <div class="card-section-leftnav" style="display:none;">
+            {{{ leftnav }}}
+        </div>
+        <div class="card-section-rightnav" style="display:none;">
+            {{{ rightnav }}}
+        </div>
+    </div>
+{{/hiddensection}}
+
+{{!KSHAMA SADHNA CONCEPT, APPLICATION, MEDITATION LOCKING AND UNLOCKING SCRIPT}}
+
+                                <script>
+                                    var modbutton = document.getElementsByClassName('modbutton'); 
+                                    var wdm = document.getElementsByClassName('wdm-mod-name');
+                                    var singlecard = document.getElementsByClassName('single-card');
+                                    var qticon = document.getElementsByClassName('qticon');
+                                    var zmicon = document.getElementsByClassName('zmicon');
+                                    var fbicon = document.getElementsByClassName('fbicon');
+                                   // var imgtags = document.querySelectorAll('img');
+                                    
+                                    
+                                    //for(let i=0; i<singlecard.length; i++){
+                                      //  if(modbutton[i].textContent == "Questionnaire"){
+                                        //    qticon[i].style.display = "inline";
+                                        //}
+                                        //else if(modbutton[i].textContent == "Zoom meeting"){
+                                          //  zmicon[i].style.display = "inline";
+                                        //}
+                                    //}
+                                </script>
+                                <script>
+                                    var availbutton = document.getElementsByClassName('availbutton');
+                                    var singlecard = document.getElementsByClassName('single-card');
+                                    var qticon = document.getElementsByClassName('qticon');
+                                    var zmicon = document.getElementsByClassName('zmicon');
+                                    var fbicon = document.getElementsByClassName('fbicon');
+                                    var lockicon = document.getElementsByClassName('lockicon');
+                                    var lock = document.getElementsByClassName('lock');
+                                    var greentick = document.getElementsByClassName('greentick');
+                                    var hourglass = document.getElementsByClassName('hourglass');
+                                    var activitycontent = document.getElementsByClassName('activity-content');
+                                    var titlespan = document.getElementsByClassName('titlespan');
+                                    
+                                   console.log(singlecard);
+                                    for(let i=0; i<singlecard.length; i++){
+                                        
+                                        //unlocked and completed
+                                        if(singlecard[i].lastElementChild.children[0].children[0].children[0].alt.includes('Completed') || (i==0 && singlecard[i].lastElementChild.children[0].children[0].children[0].alt.includes('Completed'))){
+                                            greentick[i].style.visibility = "visible";
+                                            console.log('I am completed');
+                                        }
+
+                                        //if it is the first activity
+                                        else if(i==0 && singlecard[i].lastElementChild.children[0].children[0].children[0].alt.includes('Not completed')){
+                                            hourglass[i].style.visibility = "visible";
+                                            activitycontent[i].style.color = "white";
+                                        }
+
+                                        //unlocked and ongoing
+                                        else if(singlecard[i-1].lastElementChild.children[0].children[0].children[0].alt.includes('Completed') && singlecard[i].lastElementChild.children[0].children[0].children[0].alt.includes('Not completed')){
+                                            hourglass[i].style.visibility = "visible";
+                                            activitycontent[i].style.color = "white";
+                                            console.log('I am ongoing');
+                                        }
+
+                                        //lock condition
+                                        else if(i!== 0 && singlecard[i-1].lastElementChild.children[0].children[0].children[0].alt.includes('Not completed') && singlecard[i].lastElementChild.children[0].children[0].children[0].alt.includes('Not completed')){
+                                            singlecard[i].style.background = "linear-gradient(#B0B0B0 0%,#B0B0B0 70%,#FFFFFF 70%,#FFFFFF 100%)";
+                                            //qticon[i].style.display = "none";
+                                            //zmicon[i].style.display = "none";
+                                            //fbicon[i].style.display = "none";
+                                            //lockicon[i].style.display = "inline";
+                                            lock[i].style.visibility = "visible";
+                                            activitycontent[i].style.color = "#37474f";
+                                            singlecard[i].style.pointerEvents="none";
+                                            console.log('I am locked');
+                                        }
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    }
+                                </script>
+
+                               

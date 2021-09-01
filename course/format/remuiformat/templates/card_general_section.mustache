@@ -1,0 +1,261 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+
+{{!
+    @template format_remuiformat/card_general_section
+
+
+    Example context (json):
+    {
+        "editing: "0",
+        "defaultview: "1/0",
+        "expanded: "1/0",
+        "collapsed: "1/0",
+        "user_id: "1",
+        "courseid: "1",
+        "generalsection": [
+         {
+            "generalsectiontitle": "General Section Title",
+            "activities": [
+                {
+                    "index": "index",
+                    "id": "id",
+                    "completion": "completion",
+                    "viewurl": "viewurl",
+                    "title": "title",
+                    "modulename": "modulename",
+                    "summary": "summary",
+                    "completed": "completed",
+                    "hidden": "hidden",
+                    "availstatus": "availstatus",
+                    "modicons": "modicons",
+                }
+            ],
+            "generalsectionsummary": "General Section Summary",
+         }
+        ],
+    }
+}}
+
+
+
+<li id="section-{{{index}}}" class="section col-12">
+    <div class="col-12"> {{!changed class from general-section to col-12}}
+        {{#activityexists}}
+            <h4 style="visibility:hidden" class="activitieshead">{{#str}} generalactivities, format_remuiformat{{/str}}</h4>{{!visibility:hidden}}
+            <ul class="general-section-activities justify-content-start text-center">
+                {{#activities}}
+                    <li class="col-lg-4 col-md-6 col-sm-6 d-inline-flex section" id="module-{{id}}">{{!copied class of section from card_section_summary.mustache}}
+                    {{!Training activity styling}}
+                    
+                    {{^hidden}}                 
+                        <a href="{{{viewurl}}}">                      
+                    {{/hidden}}
+                        <div class="generalsecactivitiescontent w-100" style="background: linear-gradient(#f5bf00 0%, #f5bf00 70%, #FFFFFF 70%, #FFFFFF 100% ); 
+                        background-size: cover;
+                        border-radius: 10px; 
+                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+                        padding: 10px; height: 300px; margin-bottom: 50px; color: black !important;">
+                        {{!greentick}}
+                        <span style="display:flex; justify-content: center; margin-top:-40px;"><button class="greentick" ><i class="fas fa-check fa-1x"></i></button></span>
+                        {{!Lock}}
+                        <span style="display:flex; justify-content: center; margin-top:-56px;"><button class="lock" ><i class="fas fa-lock fa-1x"></i></button></span>
+                        {{!Hourglass}}
+                        <span style="display:flex; justify-content: center; margin-top:-55px;"><button class="hourglass" ><i class="fas fa-hourglass-half"></i></button></span>
+                        {{!numbering}}
+                        <div>
+                        <span style="display: flex; justify-content: flex-end; margin-top: -5px; margin-right: 10px;"><span style="background-color:#403d3d; width: 20px; border-radius:50%; color: white;";>{{index}}</span></span>
+                        </div>
+                         
+                            <div style="height: 250px; margin-bottom: -270px;">
+                                <p style="color: black; padding-top: 80px; font-size: 20px;"><b style="display: none !important;">Click here for the demonstration!</b></p>
+                            </div>
+                        
+                            {{#editing}}
+                                {{{leftside}}}
+                            {{/editing}}
+
+                            
+                            {{! <div class="activityinstance p-0 d-inline-block" style="margin-top: 200px; left-margin: 50px !important;"> }}
+
+                                <style>
+                                @media screen and (max-width: 400px) {
+                                div.font-size {
+                                    font-size: 20px;
+                                }
+                                }
+
+                                @media screen and (min-width: 401px) {
+                                div.font-size {
+                                    font-size: 25px;
+                                }
+                                }
+
+                                .greentick {
+                                    visibility : hidden;
+                                    background-color: #4CAF50; /* Green */
+                                    border: 2px solid white;
+                                    color: white;
+                                    padding: 15px 20px;
+                                    text-align: center;
+                                    text-decoration: none;
+                                    display: inline-block;
+                                    font-size: 16px;
+                                    margin: 0 0;
+                                    border-radius: 50%;
+                                }
+                                .greentick:hover{
+                                    cursor:default;
+                                }
+
+                                .lock {
+                                    visibility : hidden;
+                                    background-color: lightgrey; 
+                                    border: 2px solid white;
+                                    color: black;
+                                    padding: 15px 20px;
+                                    text-align: center;
+                                    text-decoration: none;
+                                    display: inline-block;
+                                    font-size: 16px;
+                                    margin: 0 0;
+                                    border-radius: 50%;
+                                }
+                                .lock:hover{
+                                    cursor:default;
+                                }
+
+                                .hourglass {
+                                    visibility : hidden;
+                                    background-color: black;
+                                    border: 2px solid white;
+                                    color: #C0C0C0;
+                                    padding: 15px 20px;
+                                    text-align: center;
+                                    text-decoration: none;
+                                    display: inline-block;
+                                    font-size: 16px;
+                                    margin: 0 0;
+                                    border-radius: 50%;
+                                }
+                                .hourglass:hover{
+                                    cursor:default;
+                                }
+                                </style>
+                            
+                                {{!Commented}}
+                                {{!<div class="font-size" style="margin-top: 80px; left-margin: 50px !important; color: black !important;">
+                                    {{{title}}
+                                {{!</div>}}
+                                {{!Commented}}
+                                
+                                <div class="section-header">
+                                    <h2 class="sectionname">{{{ title }}}</h2>
+                                </div>
+
+                                <style>
+                                    .sectionname{
+                                    color: #000000 !important; 
+                                    font-size: 25px; 
+                                    margin-top: 70px !important; 
+                                    height: 50px;
+                                }
+
+                                /*.sectionname:hover{
+                                    color: #FFFFFF !important;
+                                }*/ 
+
+                                .sectionname:visited{
+                                    color: #000000 !important;
+                                }
+                                </style>
+
+                                <div class="contentafterlink">
+                                    {{{summary}}}
+                                </div>
+                                <div class="actions" style="display: none !important;">
+                                    {{{completion}}}
+                                </div>
+                                {{{availstatus}}}
+                            {{! </div> }}
+                            <button class="actBtn" style="display: none !important;">{{{completed}}}</button>{{!for buttton purpose}}
+                        </div>
+                    {{^hidden}}                 
+                        </a>                      
+                    {{/hidden}} 
+                    </li>
+                {{/activities}}
+            </ul>
+        {{/activityexists}}
+        <div class="text-center showactivitywrapper">
+            <span class="showactivity text-primary show">
+                <i class="fa fa-angle-down" aria-hidden="true"></i>
+            </span>
+        </div>  
+    </div>
+   
+        
+   
+</li>
+
+{{!JEEVAN KE 13 SABAK SCRIPT FOR LOCKING AND UNLOCKING}}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+           
+           <script>
+               var  x =  document.getElementsByClassName("greentick");
+               var  y =  document.getElementsByClassName("actBtn"); //variable for comparison
+               var  z =  document.getElementsByClassName("lock");
+               var hg = document.getElementsByClassName("hourglass");
+               var sectionname = document.getElementsByClassName("sectionname");
+               var singlecard =  document.getElementsByClassName("generalsecactivitiescontent w-100");
+               var rwv =         document.getElementsByClassName("rwv");
+               var feedback = document.getElementsByClassName("feedback");
+               var progresstext = document.getElementsByClassName("progresstext");
+
+               for(let i=0;i<y.length;i++)
+               {    
+                   
+                   //To check if section status is completed
+                   if(y[i].textContent=="1")
+                   {
+                       sectionname[i].style.color="#000000";
+                       x[i].style.visibility="visible";
+                       singlecard[i].style.background="linear-gradient(#f5bf00 0%,#f5bf00 70%,#000000 70%,#000000 100%)";
+                   }                                    
+
+                   //To check if it is the first section card
+                   else if(i==0 && y[i].textContent!=="1"){
+                       sectionname[i].style.color="#000000";
+                       hg[i].style.visibility="visible";
+                   }
+                   
+                   else if(y[i].textContent=="0" && i!==0 && y[i-1].textContent!=="1")
+                   {
+                       sectionname[i].style.color="#000000";
+                       z[i].style.visibility="visible";
+                       singlecard[i].style.background="linear-gradient(#B0B0B0 0%, #B0B0B0 70%, #FFFFFF 70%, #FFFFFF 100%)"
+                       singlecard[i].style.pointerEvents="none";
+                   }
+
+                   else if(y[i].textContent=="0")
+                   {
+                       sectionname[i].style.color="#000000";
+                       hg[i].style.visibility="visible";
+                   }
+               }
+            </script>

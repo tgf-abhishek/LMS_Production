@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+   <body>
+      <style>
+.main {
+    margin: 18px;
+    border-radius: 40px;
+}
+
+h2 {text-align: center;}
+
+div[role="form"]{
+    background-color: #fd7e00;
+    
+} 
+div[role="log"]{
+    background: #f8b816;
+}
+div[role="status"]{
+    background: #f8b816;
+} 
+#webchat {
+    position: fixed;
+    bottom: 8px;
+    right: 30%;
+    width: 500px;
+    top: 132px;
+    overflow: hidden;
+    text-align: center;
+}
+
+</style>
+      <h2> Welcome to TGF AHA - ChatBot</h2>
+      <div id="webchat" role="main"></div>
+      <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+      <script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
+      <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
+      <script>
+         // "styleSet" is a set of CSS rules which are generated from "styleOptions"
+         const styleSet = window.WebChat.createStyleSet({
+            backgroundColor: '#19194d',
+         });
+
+         // After generated, you can modify the CSS rules
+         styleSet.textContent = {
+            ...styleSet.textContent,
+            
+         };
+
+         window.WebChat.renderWebChat(
+            {
+               directLine: window.WebChat.createDirectLine({
+                  secret: 'paObC_3Vf4o.il7okRXuSIMJDXT3tUx1jeL8qDmja8PgKCScvtC7c5E'
+               }),
+
+               // Passing 'styleSet' when rendering Web Chat
+               styleSet
+            },
+            document.getElementById('webchat')
+         );
+      </script>
+   </body>
+</html>

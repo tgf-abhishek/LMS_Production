@@ -1,0 +1,357 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+
+{{!
+    @template format_remuiformat/card_section_summary
+
+
+    Example context (json):
+    {
+        "editing: "1/0",
+        "defaultview: "1/0",
+        "expanded: "1/0",
+        "collapsed: "1/0",
+        "user_id: "1",
+        "courseid: "1",
+        "generalsection": [
+         {
+            "sections": [
+                {
+                    "index": "1",
+                    "title": "Section Title",
+                    "singlepageurl": "Single Page URL",
+                    "hiddenmessage": "Hidden message",
+                    "hidden": "1/0",
+                    "summary": "Summary",
+                    "activityinfostring": "2 Files, 2 Quizzes"
+                    "sectionactivities" [
+                        {
+                        }
+                    ]
+                }
+            ]
+         }
+        ],
+    }
+}}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+{{#addsection}}
+<li id="{{divid}}" class="col-lg-4 col-md-6 col-sm-6 d-inline-flex single-card-container">
+    <div class="single-card d-flex align-items-center">
+        {{#numsections}}
+            <a href="{{{addurl}}}" class="{{addurlclass}}">{{{addicon}}} {{{straddsection}}}</a>
+
+            {{#strremovesection}}
+            <a href="{{{removeurl}}}" class="{{removeurlclass}}">{{{removeicon}}} {{{strremovesection}}}</a>
+            {{/strremovesection}}
+        {{/numsections}}
+
+        {{^numsections}}
+            <a href="{{{url}}}" data-add-sections="{{{straddsections}}}">{{{icon}}} {{{straddsections}}}</a>
+        {{/numsections}}
+    </div>
+</li>
+{{/addsection}}
+{{^addsection}}
+{{^hidden}}                 
+    <a href="{{{singlepageurl}}}">             
+{{/hidden}}
+<li class="col-lg-4 col-md-6 col-sm-6 d-inline-flex section" id="section-{{{index}}}" aria-labelledby="section-{{{index}}} .content .sectionname">
+    <div class="single-card {{{remuinewthemecolor}}} {{#sectionfirstimage}}sectionfirstimage{{/sectionfirstimage}}"
+    
+        
+        style="background: linear-gradient({{remuidefaultsectionoverlay}}, {{remuidefaultsectionoverlay}}), {{sectionfirstimage}};
+                background-repeat: no-repeat;
+                {{! 
+                    This is a comment
+                    change background color for course
+                    background: #f5bf00;
+                }}   
+
+            
+                background: linear-gradient(        
+                                    #f5bf00 0%, 
+                                    #f5bf00 70%, 
+                                    #FFFFFF 70%, 
+                                    #FFFFFF 100%);
+                background-size: cover;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); padding: 10px; margin-bottom: 50px;
+                
+                "
+                ;>
+                <span style="display:flex; justify-content: center; margin-top:-40px;"><button class="greentick" ><i class="fas fa-check fa-1x"></i></button></span>
+                <style>
+                    .greentick {
+                        visibility : hidden;
+                        background-color: #4CAF50; /* Green */
+                        border: 2px solid white;
+                        color: white;
+                        padding: 15px 20px;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 16px;
+                        margin: 0 0;
+                        border-radius: 50%;
+                    }
+                    .greentick:hover{
+                        cursor:default;
+                    }
+                </style>
+                
+                <span style="display:flex; justify-content: center; margin-top:-56px;"><button class="lock" ><i class="fas fa-lock fa-1x"></i></button></span>
+                <div style="height: 110px;">
+                    <span style="display: flex; justify-content: flex-end; margin-top: -5px; margin-right: 10px;"><span class="w3-badge" style="background-color:#403d3d; ">{{index}}</span></span>
+                </div>
+                <style>
+                    .lock {
+                        visibility : hidden;
+                        background-color: lightgrey; 
+                        border: 2px solid white;
+                        color: black;
+                        padding: 15px 20px;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 16px;
+                        margin: 0 0;
+                        border-radius: 50%;
+                    }
+                    .lock:hover{
+                        cursor:default;
+                    }
+                </style>
+                
+                
+               <span style="display:flex; justify-content: center; margin-top:-160px; padding-bottom: 100px;"><button class="hourglass" ><i class="fas fa-hourglass-half"></i></button></span>
+                <style>
+                    .hourglass {
+                        visibility : hidden;
+                        background-color: black;
+                        border: 2px solid white;
+                        color: #C0C0C0;
+                        padding: 15px 20px;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 16px;
+                        margin: 0 0;
+                        border-radius: 50%;
+                    }
+                    .hourglass:hover{
+                        cursor:default;
+                    }
+                </style>              
+
+        {{#highlighted}}<div class="highlight text-primary"></div>{{/highlighted}}
+        <div class="left side float-left mt-0">
+            {{{ leftside }}}
+        </div>
+        <div class='right side float-right mt-0'>
+            {{{ addnewsection }}}
+            {{{ optionmenu }}}
+        </div>
+
+    {{^hidden}}                 
+        <a href="{{{singlepageurl}}}">                      
+    {{/hidden}}
+        <div class="content pb-10 pb-2">
+            <div class="summary">
+            </div>
+            {{#addnewsection}}
+                <h2 class="sectionname">{{{ title }}}</h2>
+                
+            {{/addnewsection}}
+            {{^addnewsection}}
+                <div class="section-header" align="center">
+                    <h2 class="sectionname" style="color: #000000; font-size: 25px; margin-top: -5px !important; height: 50px;">{{{ title }}}</h2>
+                </div>
+                
+
+            {{/addnewsection}}
+            {{!Summary moved up using margin}}
+            <div class="wdm-section-summary {{#hidden}}summary-muted{{/hidden}}" style="margin-top: -20px;">
+                {{{ summary }}}
+            </div>
+            <div class="section-activities-summary">
+                {{#activityinfo}}
+                  <span class="item {{#hidden}}text-muted{{/hidden}}">{{  }}</span>
+                {{/activityinfo}}
+            </div>
+            {{{ hiddenmessage }}}
+            {{#editsectionurl}}
+                <a class="text-muted" href="{{ editsectionurl }}"><span><i class="fa fa-cog font-size-20 mb-5" aria-hidden="true"></i></span></a>
+            {{/editsectionurl}}    
+        </div>
+        
+    {{^hidden}}
+        </a>
+    {{/hidden}}
+
+    {{!White part clickable}}
+    {{^hidden}}                 
+        <a href="{{{singlepageurl}}}">                      
+    {{/hidden}}
+        <div style="height: 100px; margin-bottom: -20px;">
+            <b style="display: none;">Test</b>
+        </div>
+    {{^hidden}}
+        </a>
+    {{/hidden}}
+    {{#progressinfo}}
+        <button class="myBtn" style="display:none; !impoertant;">{{{progress}}}</button>
+    {{/progressinfo}} 
+    <div class="section-action-container card-bottom d-flex {{^hidden}}text-white{{/hidden}}{{#hidden}}text-muted{{/hidden}}">
+            
+            <div style="margin-left:15px; display:none !important;">
+                <h8 class="rwv">Read and watch video </h8>
+                <h5 class="feedback" style="display:none;">Status -  <h7 class="progresstext" style="font-weight:bold; pointer-events:none;">{{#progressinfo}} {{{ progress }}} {{/progressinfo}}</h7></h5>
+            </div>
+
+             
+
+
+
+          
+            {{#progressinfo}}
+                
+                <div class="progress progress-xs bg-grey-300 m-b-1" style="visibility:hidden">
+            
+                    <div class="progress-bar bg-green-600" style="width: {{ percentage }}%; visibility: hidden" role="progressbar">
+                    </div>
+                </div>
+            {{/progressinfo}}
+           
+        </div>
+    </div>
+
+</li>
+{{^hidden}}                 
+    </a>                      
+{{/hidden}}
+{{/addsection}}
+
+{{!<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+           
+           <script>
+               var  x =  document.getElementsByClassName("greentick");
+               var  y =  document.getElementsByClassName("actBtn"); //variable for comparison
+               var  z =  document.getElementsByClassName("lock");
+               var hg = document.getElementsByClassName("hourglass");
+               var sectionname = document.getElementsByClassName("sectionname");
+               var singlecard =  document.getElementsByClassName("generalsecactivitiescontent w-100");
+               var rwv =         document.getElementsByClassName("rwv");
+               var feedback = document.getElementsByClassName("feedback");
+               var progresstext = document.getElementsByClassName("progresstext");
+
+               for(let i=0;i<y.length;i++)
+               {    
+                   
+                   //To check if section status is completed
+                   if(y[i].textContent=="1")
+                   {
+                       sectionname[i].style.color="#000000";
+                       x[i].style.visibility="visible";
+                       singlecard[i].style.background="linear-gradient(#f5bf00 0%,#f5bf00 70%,#000000 70%,#000000 100%)";
+                   }                                    
+
+                   //To check if it is the first section card
+                   else if(i==0 && y[i].textContent!=="1"){
+                       sectionname[i].style.color="#000000";
+                       hg[i].style.visibility="visible";
+                   }
+                   
+                   else if(y[i].textContent=="0" && i!==0 && y[i-1].textContent!=="1")
+                   {
+                       sectionname[i].style.color="#000000";
+                       z[i].style.visibility="visible";
+                       singlecard[i].style.background="linear-gradient(#B0B0B0 0%, #B0B0B0 70%, #FFFFFF 70%, #FFFFFF 100%)"
+                       //singlecard[i].style.pointerEvents="none";
+                   }
+
+                   else if(y[i].textContent=="0")
+                   {
+                       sectionname[i].style.color="#000000";
+                       hg[i].style.visibility="visible";
+                   }
+               }
+            </script>}}
+<script src= 
+             "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> 
+             </script>
+
+              
+            
+           <script>
+               var  x =  document.getElementsByClassName("greentick");
+               var  y =  document.getElementsByClassName("myBtn");
+               var  z =  document.getElementsByClassName("lock");
+               var hg = document.getElementsByClassName("hourglass");
+               var sectionname = document.getElementsByClassName("sectionname");
+               var singlecard =  document.getElementsByClassName("single-card");
+               var rwv =         document.getElementsByClassName("rwv");
+               var feedback = document.getElementsByClassName("feedback");
+               var progresstext = document.getElementsByClassName("progresstext");
+
+               for(let i=0;i<y.length;i++)
+               {    
+                   
+                   //To check if section status is completed
+                   if(y[i].textContent=="Completed")
+                   {
+                       x[i].style.visibility="visible";
+                       singlecard[i].style.background="linear-gradient(#f5bf00 0%,#f5bf00 70%,#000000 70%,#000000 100%)";
+                       progresstext[i].style.color= "#7CFC00";
+                   }
+                   //To check if it is the first section card
+                   else if((i==0 && y[i].textContent!== "Completed") || (y[i].textContent == "Let's Start" && i==0)){
+                       hg[i].style.visibility="visible";
+                       rwv[i].style.color="black";
+                       feedback[i].style.color="black";
+                       feedback[i].style.fontWeight="bold";
+                       progresstext[i].style.color= "#800080";
+                   }
+                   //To check if section status is ongoing or in-progress
+                   else if(i!==0 && y[i-1].textContent =="Completed" && y[i].textContent!=="Completed")
+                   {
+                       hg[i].style.visibility="visible";
+                       rwv[i].style.color="black";
+                       feedback[i].style.color="black";
+                       feedback[i].style.fontWeight="bold";
+                       progresstext[i].style.color= "#800080";
+                    }
+                    //To check if section status is locked
+                    else if(i!== 0 && y[i-1].textContent !=="Completed" || y[i-1].textContent !=="Let's Start")
+                    {
+                        z[i].style.visibility="visible";
+                        x[i].style.visibility="hidden";  
+                        sectionname[i].style.cursor="default";
+                        rwv[i].style.color="black";
+
+                        feedback[i].style.color="black";
+                        feedback[i].style.fontWeight="bold";
+                        singlecard[i].style.background="linear-gradient(#B0B0B0 0%,#B0B0B0 70%,#FFFFFF 70%,#FFFFFF 100%)";
+                        singlecard[i].style.pointerEvents="none";
+                        progresstext[i].style.color= "black";
+                    }
+
+               }
+            </script>
+

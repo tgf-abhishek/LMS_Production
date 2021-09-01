@@ -1,0 +1,154 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    Page header.
+}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+<header id="page-header" class="row" style="padding-top: 40px">
+    <div class="col-12 pt-3 pb-3">
+        <div class="card {{^contextheader}}border-0{{/contextheader}}">
+            {{#boostimage}}
+                {{{ headerimage }}}
+            {{/boostimage}}
+            <div class="card-body {{^contextheader}}p-2{{/contextheader}}">
+                <div class="d-flex">
+                    {{#contextheader}}
+                    <div class="mr-auto" style="display:flex;">
+                        {{{contextheader}}}
+                        <h1 class="welcome" style="color:white;">Welcome to TGF Shivir Management System</h1>
+                        
+                    </div>
+                    {{/contextheader}}
+                    
+
+                    {{#settingsmenu}}
+                    <div class="context-header-settings-menu">
+                        {{{settingsmenu}}}
+                    </div>
+                    {{/settingsmenu}}
+                    <div class="header-actions-container flex-shrink-0" data-region="header-actions-container">
+                        {{#headeractions}}
+                            <div class="header-action ml-2">{{{.}}}</div>
+                        {{/headeractions}}
+                    </div>
+                </div>
+                <div class="navandbuttons d-flex">
+                    <button class="back" type="button" onclick="goBack();" style="display: none; font-size: 10px; width: 100px;"><i class="fas fa-arrow-circle-left"></i>Go Back</button>
+                    <button class="home" type="button" onclick="window.location.href = 'http://tejgyan.tv/';" style="display: none; font-size: 10px; width: 100px;"><i class="fas fa-home"></i>Go to Home</button>
+                    {{#hasnavbar}}
+
+                    
+                    {{/hasnavbar}}
+                    
+                    <div class="ml-auto d-flex" style="display:none !important;">
+                        {{{pageheadingbutton}}}
+                    </div>
+                    <div id="course-header" style="display:none !important;">
+                        {{{courseheader}}}
+                    </div>
+
+                </div>
+                <div id="page-navbar" class="nav" style="padding-top: 20px;">
+                        {{{navbar}}}
+                </div>
+
+                {{!<style>
+                    @media screen and (max-width: 480px) 
+                    {
+                    nav {
+                        width: 400px;
+                    }
+                    }
+
+                    @media screen and (max-width: 480px) 
+                    {
+                    nav {
+                        width: 400px;
+                    }
+                    }
+                    </style>}}
+            </div>
+        </div>
+    </div>
+    {{! <div><button onclick="window.location.href='http://tejgyan.tv/mod/questionnaire/complete.php?id=82'">Click Me!</button></div> }}
+    {{#jitsi}}
+        {{{ jitsi }}}
+    {{/jitsi}}
+</header>
+
+<script>
+                            var flag=1;
+                            var mrauto = document.querySelectorAll("div");
+                            var welcome = document.getElementsByClassName('welcome');
+                            var back= document.getElementsByClassName('back');
+                            var home = document.getElementsByClassName('home');
+                            
+                            for(let i=0; i<mrauto.length; i++){
+                                if(mrauto[i].querySelector('.page-context-header')){
+                                    welcome[i].style.display = "none";
+                                    flag=0;
+                                }
+                                if(flag==0){
+                                    back[i].style.display="inline";
+                                    home[i].style.display ="inline";
+                                }
+                                
+                            }
+                        </script>
+                        
+                        <script>
+                        function goBack() {
+                             window.history.go(-1);
+                                        }
+                        </script>
+
+                        <style>
+                            .welcome{
+                                font-size: 45px;
+                                margin-top: 25px;
+                                margin-left: 5px;
+                                font-family: "Candara";
+                            }
+                           .mr-auto{
+                               margin-top: -40px;
+                           }
+                           .back{
+                               
+                               margin-right: 5px;
+                               border-radius: 5px;
+                               height: 35px;
+                               background-color: white;
+                               border: none;
+                           }
+                           .home{
+                               margin-right: 10px;
+                               margin-left: 5px;
+                               border-radius: 5px;
+                               height: 35px;
+                               background-color: white;
+                               border: none;
+                           }
+                           .navandbuttons{
+                               
+                           }
+                           .fa-home{
+                               margin-right: 4px;
+                           }
+                           .fa-arrow-circle-left{
+                               margin-right: 4px;
+                           }
+                        </style>

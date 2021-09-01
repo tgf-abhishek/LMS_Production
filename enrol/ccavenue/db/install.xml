@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="enrol/ccavenue/db" VERSION="20120122" COMMENT="XMLDB file for Moodle enrol/ccavenue"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+	<TABLES>
+		<TABLE NAME="enrol_ccavenue" COMMENT="Holds all known information about ccavenue transactions">
+			<FIELDS>
+				<FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="order_id"/>
+				<FIELD NAME="order_id" TYPE="char" LENGTH="255" NOTNULL="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="id" NEXT="merchant_id"/>
+				<FIELD NAME="merchant_id" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" PREVIOUS="order_id" NEXT="billing_cust_name"/>	
+				<FIELD NAME="billing_cust_name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" PREVIOUS="merchant_id" NEXT="billing_cust_address"/>
+				<FIELD NAME="billing_cust_address" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="billing_cust_name" NEXT="billing_cust_city"/>
+				<FIELD NAME="billing_cust_city" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="billing_cust_address" NEXT="billing_cust_state"/>
+				<FIELD NAME="billing_cust_state" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="billing_cust_city" NEXT="billing_zip_code"/>
+				<FIELD NAME="billing_zip_code" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="billing_cust_state" NEXT="billing_cust_country"/>
+				<FIELD NAME="billing_cust_country" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="billing_zip_code" NEXT="billing_cust_tel"/>
+				<FIELD NAME="billing_cust_tel" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="billing_cust_country" NEXT="billing_cust_email"/>
+				<FIELD NAME="billing_cust_email" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" PREVIOUS="billing_cust_tel" NEXT="notes"/>
+				<FIELD NAME="notes" TYPE="text"  SEQUENCE="false" PREVIOUS="billing_cust_email" NEXT="merchant_param"/>
+				<FIELD NAME="merchant_param" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="notes" NEXT="authdesc"/>        
+				<FIELD NAME="authdesc" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="merchant_param" NEXT="courseid"/>
+				<FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="authdesc" NEXT="instanceid"/>
+				<FIELD NAME="instanceid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="courseid" NEXT="userid"/>
+				<FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="instanceid" NEXT="timeupdated"/>
+				<FIELD NAME="timeupdated" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" PREVIOUS="userid" NEXT="timecreated"/>
+				<FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" PREVIOUS="timeupdated" NEXT="settletime"/>
+				<FIELD NAME="settletime" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" PREVIOUS="timecreated" NEXT="amount"/>
+				<FIELD NAME="amount" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="settletime" NEXT="currency"/>
+				<FIELD NAME="currency" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" PREVIOUS="amount" NEXT="payment_status"/>
+				<FIELD NAME="payment_status" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="currency" />
+			</FIELDS>
+			<KEYS>
+				<KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+			</KEYS>
+		</TABLE>
+	</TABLES>
+</XMLDB>
